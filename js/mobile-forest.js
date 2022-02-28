@@ -28,10 +28,22 @@ const displayPhones = data =>{
                 <div class="card-body">
                   <h5 class="card-title">${phoneData.phone_name}</h5>
                   <p class="card-text">${phoneData.brand}</p>
-                  <a onclick=loadPhoneDetails(${phoneData.brand})" href="#" class="btn btn-primary">Go somewhere</a>
+                  <a onclick=loadPhoneDetails(${phoneData.slug})" href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
         `
         searchResult.appendChild(div);
-    });
-};
+    })
+}
+//indivisual phone finding
+const loadPhoneDetails = phoneSlug =>{
+    // console.log(phoneSlug);
+    const url = `https://openapi.programming-hero.com/api/phone/${slug}`
+    fetch (url)
+    .then (res => res.json())
+    .then (data => phoneDetailsDisplay(data.data[0]))
+}
+
+const phoneDetailsDisplay = phoneData =>{
+    console.log(phoneData);
+}
