@@ -1,7 +1,7 @@
 const searchPhone = () =>{
     const searchField = document.getElementById("search-field");
     const searchText = searchField.value;
-    console.log(searchText);
+    // console.log(searchText);
     //clear field
     searchField.value = " ";
 
@@ -45,5 +45,20 @@ const loadPhoneDetails = phoneSlug =>{
 }
 
 const phoneDetailsDisplay = phoneData =>{
-    console.log(phoneData);
+    const phoneDetails = document.getElementById('phone-details')
+    phoneDetails.textContent = " ";
+    const div = document.createElement('div');
+    div.classList.add('card');
+    div.innerHTML = `
+        <img src="${phoneData.image}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">${phoneData.phone_name}</h5>
+            <p class="card-text">${phoneData.chipSet}</p>
+            <p class="card-text">${phoneData.memory}</p>
+            <p class="card-text">${phoneData.sensors}</p>
+            <p class="card-text">${phoneData.others}</p>
+            
+        </div>
+    `
+    phoneDetails.appendChild(div);
 }
