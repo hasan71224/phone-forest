@@ -5,7 +5,7 @@ const searchPhone = async () =>{
     // console.log(searchText);
     //clear field
     searchField.value = " ";
-
+    document.getElementById('error-massage').style.display = 'none';
     // call api
     if(searchText == 0){
         console.log("write valueable text");
@@ -21,23 +21,35 @@ const searchPhone = async () =>{
 const displayPhones = data =>{
     const searchResult = document.getElementById('search-result');
     searchResult.textContent=" ";
-    data.forEach(phoneData => {
-        console.log(phoneData);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        // create div and new Element...................
+    if(!data){
+        const div = document.createElement("div")
         div.innerHTML = `
-            <div onclick="loadPhoneDetails(${phoneData.slug})" class="card h-100">
-                <img src="${phoneData.image}" class="card-img-top" alt="image">
-                <div class="card-body">
-                  <h5 class="card-title">${phoneData.phone_name}</h5>
-                  <p class="card-text">${phoneData.brand}</p>
-                  <a onclick="loadPhoneDetails('${phoneData.slug}')" href="#" class="btn btn-primary">Details</a>
-                </div>
-            </div>
-        `
+         <div class="card h-100">
+            <h3>Not available </h3>
+        </div>
+        `;
         searchResult.appendChild(div);
-    })
+    }
+
+    else{
+        data?.forEach(phoneData => {
+            console.log(phoneData);
+            const div = document.createElement('div');
+            div.classList.add('col');
+            // create div and new Element...................
+            div.innerHTML = `
+                <div class="card h-100">
+                    <img src="${phoneData.image}" class="card-img-top" alt="image">
+                    <div class="card-body">
+                      <h5 class="card-title">${phoneData.phone_name}</h5>
+                      <p class="card-text">${phoneData.brand}</p>
+                      <a onclick="loadPhoneDetails('${phoneData.slug}')" href="#" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            `
+            searchResult.appendChild(div);
+        })
+    }
 }
 //indivisual phone finding
 const loadPhoneDetails = phoneSlug =>{
@@ -63,7 +75,8 @@ const phoneDetailsDisplay = phoneData =>{
         <img src="${phoneData.image}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title"><b>Name:</b> ${phoneData.name}</h5>
-            <p class="card-text"><b>ChipSet:</b> ${phoneData.mainFeatures.chipSet}</p>
+            <p class="card-text"><b>release Date:</b> ${phoneData.mainFeatures.chipSet ? phoneData.releaseDate: "No Relase date Found"}</p>
+            <p class="card-text"><b>ChipSet:</b> ${phoneData.mainFeatures.chipSet ? phoneData.mainFeatures.chipSet: "Not available"}</p>
             <p class="card-text"><b>Storage:</b> ${phoneData.mainFeatures.memory}</p>
             <p class="card-text"><b>Sensors:</b> ${phoneData.mainFeatures.sensors}</p>
             <p class="card-text"><b>Others:</b> </br>
