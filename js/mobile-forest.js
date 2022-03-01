@@ -66,7 +66,14 @@ const phoneDetailsDisplay = phoneData =>{
             <p class="card-text"><b>ChipSet:</b> ${phoneData.mainFeatures.chipSet}</p>
             <p class="card-text"><b>Storage:</b> ${phoneData.mainFeatures.memory}</p>
             <p class="card-text"><b>Sensors:</b> ${phoneData.mainFeatures.sensors}</p>
-            <p class="card-text"><b>Others:</b> ${phoneData.others}</p>
+            <p class="card-text"><b>Others:</b> </br>
+                 WLAN: ${phoneData.others.WLAN}</br>
+                 Bluetooth: ${phoneData.others.Bluetooth}</br>
+                 GPS: ${phoneData.others.GPS}</br>
+                 NFC: ${phoneData.others.NFC}</br>
+                 Radio: ${phoneData.others.Radio}</br>
+                 USB: ${phoneData.others.USB}
+            </p>
             
         </div>
     `
