@@ -4,8 +4,9 @@ const searchPhone = async () =>{
     const searchText = searchField.value;
     // console.log(searchText);
     //clear field
-    searchField.value = " ";
+    searchField.value = "";
     document.getElementById('error-massage').style.display = 'none';
+    console.log(searchText);
     // call api
     if(searchText == 0){
         console.log("write valueable text");
@@ -14,18 +15,18 @@ const searchPhone = async () =>{
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch (url)
     .then(res => res.json())
-    .then(data => displayPhones(data.data)) 
+    .then(data => displayPhones(data.data.slice(0, 20))) 
     }  
 }
 //show in display
 const displayPhones = data =>{
     const searchResult = document.getElementById('search-result');
     searchResult.textContent=" ";
-    if(!data){
-        const div = document.createElement("div")
+    if(data.length==0){
+        const div = document.createElement('div');
         div.innerHTML = `
-         <div class="card h-100">
-            <h3>Not available </h3>
+         <div>
+            <h3 class="text-danger">Not available</h3>
         </div>
         `;
         searchResult.appendChild(div);
@@ -33,7 +34,7 @@ const displayPhones = data =>{
 
     else{
         data?.forEach(phoneData => {
-            console.log(phoneData);
+            // console.log(phoneData);
             const div = document.createElement('div');
             div.classList.add('col');
             // create div and new Element...................
@@ -66,7 +67,7 @@ const displayError = error =>{
 }
 
 const phoneDetailsDisplay = phoneData =>{
-    console.log(phoneData);
+    // console.log(phoneData);
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = ' ';
     const div = document.createElement('div');
