@@ -42,8 +42,8 @@ const displayPhones = data =>{
                 <div class="card h-100">
                     <img src="${phoneData.image}" class="card-img-top" alt="image">
                     <div class="card-body">
-                      <h5 class="card-title">${phoneData.phone_name}</h5>
-                      <p class="card-text">${phoneData.brand}</p>
+                      <h5 class="card-title"><b>Name:</b> ${phoneData.phone_name}</h5>
+                      <p class="card-text"><b>Brand:</b> ${phoneData.brand}</p>
                       <a onclick="loadPhoneDetails('${phoneData.slug}')" href="#" class="btn btn-primary">Details</a>
                     </div>
                 </div>
