@@ -91,5 +91,6 @@ const phoneDetailsDisplay = phoneData =>{
             
         </div>
     `
+    // append div
     phoneDetails.appendChild(div);
 }
